@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmallAPI Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        .nav-links li {
+            margin: 0 1rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature {
+            padding: 1.5rem;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .feature h3 {
+            color: #495057;
+            margin-bottom: 0.5rem;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 4px solid #667eea;
+            margin: 1rem 0;
+        }
+        
+        code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .example {
+            background: #e8f4fd;
+            border: 1px solid #b8daff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .example h4 {
+            color: #004085;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #5a6fd8;
+        }
+        
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero">
+                <h1>🚀 SmallAPI</h1>
+                <p>A Go web framework with Python/Flask-like simplicity</p>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#quickstart">Quick Start</a></li>
+                <li><a href="#examples">Examples</a></li>
+                <li><a href="#api">API Reference</a></li>
+                <li><a href="getting-started.md">Getting Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section id="overview" class="section">
+                <h2>Overview</h2>
+                <p>SmallAPI is a lightweight, zero-dependency Go web framework that brings the simplicity of Python's Flask to Go development. Built entirely on Go's standard library, it provides an intuitive API for creating web applications and APIs with minimal boilerplate.</p>
+                
+                <div class="example">
+                    <h4>Hello World in 4 lines:</h4>
+                    <pre><code>app := smallapi.New()
+app.Get("/", func(c *smallapi.Context) {
+    c.JSON(map[string]string{"hello": "world"})
+})
+app.Run(":8080")</code></pre>
+                </div>
+            </section>
+
+            <section id="features" class="section">
+                <h2>Features</h2>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <h3>🔥 Flask-like Simplicity</h3>
+                        <p>Intuitive routing, middleware, and request handling that feels familiar to Python developers.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>⚡ Zero Dependencies</h3>
+                        <p>Built entirely on Go's standard library. No external dependencies to manage or security vulnerabilities to worry about.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🛠️ Hot Reload</h3>
+                        <p>Automatic server restart on file changes during development with <code>app.RunDev()</code>.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🔒 Production Ready</h3>
+                        <p>Built-in security headers, rate limiting, graceful shutdown, and error recovery.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>📝 Templating</h3>
+                        <p>Auto-loading HTML templates with built-in template functions and data binding.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>🔐 Authentication</h3>
+                        <p>Built-in session management and authentication middleware for secure applications.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>📡 WebSocket Support</h3>
+                        <p>Easy WebSocket upgrades for real-time applications with simple message handling.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>✅ Data Validation</h3>
+                        <p>Struct-based validation with tag support for common validation rules.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="quickstart" class="section">
+                <h2>Quick Start</h2>
+                
+                <h3>Installation</h3>
+                <pre><code>go mod init your-project
+go get github.com/grandpaej/smallapi</code></pre>
+
+                <h3>Basic Example</h3>
+                <div class="example">
+                    <h4>REST API with validation:</h4>
+                    <pre><code>package main
+
+import "github.com/grandpaej/smallapi"
+
+type User struct {
+    Name  string `json:"name" validate:"required,min=2"`
+    Email string `json:"email" validate:"required,email"`
+}
+
+func main() {
+    app := smallapi.New()
+    
+    // Middleware
+    app.Use(smallapi.Logger())
+    app.Use(smallapi.CORS())
+    
+    // Routes
+    app.Get("/users/:id", func(c *smallapi.Context) {
+        id := c.Param("id")
+        c.JSON(map[string]string{"user_id": id})
+    })
+    
+    app.Post("/users", func(c *smallapi.Context) {
+        var user User
+        if err := c.JSON(&user); err != nil {
+            c.Status(400).JSON(map[string]string{"error": "Invalid JSON"})
+            return
+        }
+        
+        if err := c.Validate(&user); err != nil {
+            c.Status(400).JSON(map[string]string{"error": err.Error()})
+            return
+        }
+        
+        c.Status(201).JSON(user)
+    })
+    
+    app.Run(":8080")
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="examples" class="section">
+                <h2>Examples</h2>
+                
+                <div class="example">
+                    <h4>Static Files & Templates:</h4>
+                    <pre><code>app := smallapi.New()
+
+// Serve static files
+app.Static("/static", "./assets")
+
+// Template rendering
+app.Get("/", func(c *smallapi.Context) {
+    data := map[string]interface{}{
+        "title": "Welcome",
+        "users": []string{"Alice", "Bob", "Charlie"},
+    }
+    c.Render("index.html", data)
+})
+
+app.RunDev(":8080") // Hot reload in development</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>WebSocket Chat:</h4>
+                    <pre><code>app.Get("/ws", func(c *smallapi.Context) {
+    c.Upgrade(func(ws *smallapi.WebSocket) {
+        for {
+            message, err := ws.ReadMessage()
+            if err != nil {
+                break
+            }
+            ws.WriteMessage([]byte("Echo: " + string(message)))
+        }
+    })
+})</code></pre>
+                </div>
+
+                <div class="example">
+                    <h4>Authentication:</h4>
+                    <pre><code>app.Use(smallapi.Session())
+
+app.Post("/login", func(c *smallapi.Context) {
+    // ... validate credentials ...
+    c.Session().Set("user_id", userID)
+    c.JSON(map[string]string{"status": "logged in"})
+})
+
+// Protected routes
+api := app.Group("/api")
+api.Use(smallapi.RequireAuth())
+api.Get("/profile", func(c *smallapi.Context) {
+    userID := c.Session().Get("user_id")
+    c.JSON(map[string]interface{}{"user_id": userID})
+})</code></pre>
+                </div>
+            </section>
+
+            <section id="api" class="section">
+                <h2>API Reference</h2>
+                <p>For detailed API documentation, see the following guides:</p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li><a href="getting-started.md" class="btn" style="margin: 0.5rem;">Getting Started Guide</a></li>
+                    <li><a href="api-reference.md" class="btn" style="margin: 0.5rem;">Complete API Reference</a></li>
+                    <li><a href="examples.md" class="btn" style="margin: 0.5rem;">More Examples</a></li>
+                    <li><a href="migration-from-flask.md" class="btn" style="margin: 0.5rem;">Migration from Flask</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 SmallAPI. Licensed under MIT License.</p>
+            <p>Made with ❤️ for Go developers who miss Python's simplicity</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
