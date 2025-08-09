@@ -39,6 +39,12 @@ func (te *TemplateEngine) LoadDir(dir string) error {
                 
                 if strings.HasSuffix(path, ".html") {
                         name := strings.TrimPrefix(path, dir+"/")
+                        // Handle relative path correctly
+                        if name == path {
+                                // If TrimPrefix didn't change the path, try with just the filename
+                                name = filepath.Base(path)
+                        }
+                        
                         tmpl, err := template.New(name).Funcs(te.funcs).ParseFiles(path)
                         if err != nil {
                                 return err
