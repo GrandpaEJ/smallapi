@@ -52,6 +52,10 @@ app.Get("/", func(c *smallapi.Context) {
 - Request validation with struct tags
 - Middleware system for composable functionality
 
+## ⚠️ Warning 
+This PKG still in beta mode . many feature not working smoothly <br>
+<b>EX: `hot-reloading`</b> 
+
 ## 🚀 Quick Start
 
 ### Installation
