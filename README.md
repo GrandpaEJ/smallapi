@@ -4,6 +4,7 @@ A Go web framework with Python/Flask-like simplicity - production-ready, zero de
 
 [![Go Version](https://img.shields.io/badge/Go-1.19+-blue.svg)](https://golang.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+Made With AI Agent and GrandpaEJ
 
 ## Why SmallAPI?
 
