@@ -30,12 +30,14 @@ type Segment struct {
 // Router handles routing for the application
 type Router struct {
 	routes []Route
+	docs   *Documentation
 }
 
 // NewRouter creates a new router
 func NewRouter() *Router {
 	return &Router{
 		routes: make([]Route, 0),
+		docs:   NewDocumentation(),
 	}
 }
 
@@ -49,6 +51,7 @@ func (r *Router) Add(method, path string, handler HandlerFunc) {
 		Pattern: pattern,
 	}
 	r.routes = append(r.routes, route)
+	r.docs.AddRoute(method, path, handler)
 }
 
 // compilePattern compiles a route pattern like "/users/:id/posts/:postId"
@@ -80,7 +83,7 @@ func (r *Router) compilePattern(path string) *RoutePattern {
 // Match finds a matching route for the given method and path
 func (r *Router) Match(method, path string) (HandlerFunc, map[string]string) {
 	pathSegments := strings.Split(strings.Trim(path, "/"), "/")
-	
+
 	for _, route := range r.routes {
 		if route.Method != method {
 			continue
@@ -127,5 +130,22 @@ func (r *Router) Routes() []Route {
 func (r *Router) PrintRoutes() {
 	for _, route := range r.routes {
 		println(route.Method, route.Path)
+	}
+}
+
+// ServeDoc returns the API documentation as JSON
+func (r *Router) ServeDoc() HandlerFunc {
+	return func(c *Context) {
+		doc, err := r.docs.GenerateJSON()
+		if err != nil {
+			c.Status(500)
+			return
+		}
+
+		// Add credits to the documentation
+		c.Header("X-Powered-By", "SmallAPI")
+		c.Header("X-Credits", "Framework by GrandpaEJ, Documentation by GitHub Copilot")
+		c.Header("Content-Type", "application/json")
+		c.JSON(string(doc))
 	}
 }
