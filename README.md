@@ -10,17 +10,26 @@ Made With AI Agent and GrandpaEJ
 
 SmallAPI brings the simplicity and developer experience of Python's Flask to Go development. If you love Flask's minimalism but need Go's performance, SmallAPI is for you.
 
-```go
-// Python Flask
+<h3>Python Flask</h3>
+
+```python
 @app.route('/')
 def hello():
     return {'hello': 'world'}
+```
 
+<h3>GO SmallAPI</h3>
+
+```go
 // SmallAPI (Go)
 app.Get("/", func(c *smallapi.Context) {
     c.JSON(map[string]string{"hello": "world"})
 })
 ```
+### ⚠️ Warning 
+This PKG still in beta mode . many feature not working smoothly <br>
+
+<b>EX: `hot-reloading`</b> 
 
 ## ✨ Features
 
@@ -52,10 +61,6 @@ app.Get("/", func(c *smallapi.Context) {
 - WebSocket support for real-time apps
 - Request validation with struct tags
 - Middleware system for composable functionality
-
-## ⚠️ Warning 
-This PKG still in beta mode . many feature not working smoothly <br>
-<b>EX: `hot-reloading`</b> 
 
 ## 🚀 Quick Start
 
